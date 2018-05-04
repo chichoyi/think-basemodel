@@ -1,0 +1,33 @@
+{
+    "name": "chichoyi/think-basemodel",
+    "description": "thinkphp( >5.0 ) 框架模型中间件",
+    "keywords": [
+        "thinkphp5",
+        "basemodel",
+        "中间件",
+        "think-basemodel"
+    ],
+    "homepage": "https://github.com/chichoyi/think-basemodel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "chichoyi",
+            "email": "chichoyi@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~5.6|~7.0",
+    },
+    "autoload": {
+        "psr-4": {
+            "Chichoyi\\Think\\": "src"
+        }
+    },
+    "extra": {
+        "think-config": {
+            "oss": "src/config/baselmodel.php"
+        }
+    }
+}
