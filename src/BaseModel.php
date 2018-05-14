@@ -41,7 +41,7 @@ trait BaseModel
      * @return mixed|string
      */
     public function delById($id){
-        if (!config('oss.soft_delete')) return '未开启删除标志位';
+        if (!config('basemodel.soft_delete')) return '未开启删除标志位';
         return $this->putById($id, [$this->getDeleteColumn() => 0]);
     }
 
@@ -53,7 +53,7 @@ trait BaseModel
      * @return mixed|string
      */
     public function delByField($where, array $whereFunction = []){
-        if (!config('oss.soft_delete')) return '未开启删除标志位';
+        if (!config('basemodel.soft_delete')) return '未开启删除标志位';
         return $this->put($where, [$this->getDeleteColumn() => 0], true, $whereFunction);
     }
 
