@@ -119,6 +119,20 @@ trait BaseModel
     }
 
     /**
+     * description 获取列表
+     * author chicho
+     * @param $where
+     * @param string $field
+     * @param array $orderBy
+     * @param bool $softDelete
+     * @param array $whereFunction
+     * @return array
+     */
+    public function getList($where, $field = '*', $orderBy = [], $softDelete = true, array $whereFunction = []){
+        return $this->getByField($where, $field, $orderBy, $softDelete, $whereFunction);
+    }
+
+    /**
      * description 根据字段查询一条
      * author chicho
      * @param $where
