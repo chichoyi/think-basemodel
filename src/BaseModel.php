@@ -128,7 +128,7 @@ trait BaseModel
      * @param array $whereFunction
      * @return array
      */
-    public function getList($where, $field = '*', $orderBy = [], $softDelete = true, array $whereFunction = []){
+    public function getList($field = '*', $where = [], $orderBy = [], $softDelete = true, array $whereFunction = []){
         return $this->getByField($where, $field, $orderBy, $softDelete, $whereFunction);
     }
 
