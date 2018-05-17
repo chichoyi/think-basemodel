@@ -93,10 +93,10 @@ trait BaseModel
      * @param array $except_fields
      * @return array
      */
-    public function getField($except_fields = []){
+    public function getField($exceptFields = []){
         $fields = Db::getTableInfo($this->table, 'fields');
-        if (count($except_fields))
-            $fields = array_diff($fields, $except_fields);
+        if (count($exceptFields))
+            $fields = array_diff($fields, $exceptFields);
         return $fields;
     }
 
@@ -167,7 +167,7 @@ trait BaseModel
      * description 分页列表
      * author chicho
      * @param $page
-     * @param $per_num
+     * @param $perNum
      * @param array $where
      * @param string $field
      * @param array $orderBy
@@ -175,7 +175,7 @@ trait BaseModel
      * @param array $whereFunction
      * @return array
      */
-    public function getListWithPage($page, $per_num, $where = [], $field = '*', $orderBy = [], $softDelete = true, $whereFunction = []){
+    public function getListWithPage($page, $perNum, $where = [], $field = '*', $orderBy = [], $softDelete = true, $whereFunction = []){
         $model_count = $this->handleWhere($this, $where, $softDelete);
         $model_count = $this->handleFunction($model_count, $whereFunction);
         if (count($orderBy)) $model_count->order($orderBy);
@@ -184,14 +184,14 @@ trait BaseModel
         $model = $this->handleWhere($this, $where, $softDelete);
         $model = $this->handleFunction($model, $whereFunction);
         if (count($orderBy)) $model->order($orderBy);
-        $list = $model->field($field)->page($page.','.$per_num)->select();
+        $list = $model->field($field)->page($page.','.$perNum)->select();
 
         return [
             'list' => $this->handleSelect($list),
-            'total_page' => intval(ceil($totalRecord / $per_num)),
+            'total_page' => intval(ceil($totalRecord / $perNum)),
             'total_record' => $totalRecord,
             'page' => $page,
-            'limit' => $per_num
+            'limit' => $perNum
         ];
     }
 
@@ -218,7 +218,7 @@ trait BaseModel
      * description 关联模型的分页列表
      * author chicho
      * @param $page
-     * @param $per_num
+     * @param $perNum
      * @param $joinTable
      * @param array $where
      * @param string $field
@@ -227,21 +227,21 @@ trait BaseModel
      * @param array $whereFunction
      * @return array
      */
-    public function getListJoinTableWithPage($page, $per_num, $joinTable, $where = [], $field = '*', $orderBy = [], $softDelete = true, $whereFunction = []){
+    public function getListJoinTableWithPage($page, $perNum, $joinTable, $where = [], $field = '*', $orderBy = [], $softDelete = true, $whereFunction = []){
 
         $model = $this->handleWhere($this, $where, $softDelete);
         $model = $this->handleFunction($model, $whereFunction);
         if (!empty($orderBy)) $model->order($orderBy);
-        $list = $model->with($joinTable)->page($page.','.$per_num)->field($field)->select();
+        $list = $model->with($joinTable)->page($page.','.$perNum)->field($field)->select();
 
         $modelCount = $this->handleWhere($this, $where, $softDelete);
         $totalRecord = $this->handleFunction($modelCount, $whereFunction)->count();
         return [
             'list' => $this->handleSelect($list),
-            'total_page' => intval(ceil($totalRecord / $per_num)),
+            'total_page' => intval(ceil($totalRecord / $perNum)),
             'total_record' => $totalRecord,
             'page' => $page,
-            'limit' => $per_num
+            'limit' => $perNum
         ];
     }
 

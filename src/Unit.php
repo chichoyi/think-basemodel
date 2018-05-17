@@ -69,10 +69,10 @@ trait Unit
         if (count($data) && $this->retFormat()){
             if (!is_object($data[0]) && count($data) == count($data, true))
                 return $data->toArray();
-            $tmp_arr = [];
+            $tmpArr = [];
             foreach ($data as $key => $value)
-                $tmp_arr[$key] = $value->toArray();
-            $data = $tmp_arr;
+                $tmpArr[$key] = $value->toArray();
+            $data = $tmpArr;
         }
         return $data;
     }
@@ -83,8 +83,8 @@ trait Unit
      * @return bool
      */
     protected function getDeleteColumn(){
-        if(isset($this->soft_delete))
-            return $this->soft_delete;
+        if(isset($this->softDelete))
+            return $this->softDelete;
         return 'soft_delete';
     }
 
