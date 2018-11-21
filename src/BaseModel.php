@@ -23,7 +23,7 @@ trait BaseModel
     public function add(array $data)
     {
         if (count($data) == count($data, true)){
-            $this->data($data)->save();
+            $this->isUpdate(false)->data($data)->save();
             if (isset($this->primaryId))
                 return $this->{$this->primaryId};
             else
@@ -261,9 +261,8 @@ trait BaseModel
         $model = $model->field($field);
         $data = $model->with($joinTable)->select();
         $data = $this->handleSelect($data);
-        if (!empty($data)){
+        if (!empty($data))
             return $data[0];
-        }
         return $data;
     }
 
