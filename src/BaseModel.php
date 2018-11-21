@@ -14,7 +14,7 @@ trait BaseModel
     use Unit;
 
     /**
-     * description 添加数据
+     * description 新增数据
      * author chicho
      * @param $data
      * @return mixed
