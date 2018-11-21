@@ -259,8 +259,12 @@ trait BaseModel
         $model = $this->handleWhere($this, $where, $softDelete);
         $model = $this->handleFunction($model, $whereFunction);
         $model = $model->field($field);
-        $data = $model->with($joinTable)->find();
-        return $this->handleSelect($data);
+        $data = $model->with($joinTable)->select();
+        $data = $this->handleSelect($data);
+        if (!empty($data)){
+            return $data[0];
+        }
+        return $data;
     }
 
 
